@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import Header from './Header';
+import Header from '../../Components/Header/Header';
 
-const Sobre = () => {
+const NotFound = () => {
     return (
         <Fragment>
             <Header />
@@ -10,4 +10,4 @@ const Sobre = () => {
     )
 }
 
-export default Sobre;
+export default NotFound;
