@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Buttom from '@material-ui/core/Button';
+
 import FormValidator from '../../Utils/FormValidator';
 import PopUp from '../../Utils/PopUp';
+import Toast from '../Toast/Toast';
 
 class Formulario extends Component {
     constructor(props) {
@@ -32,7 +37,8 @@ class Formulario extends Component {
             nome: '',
             livro: '',
             preco: '',
-            validacao: this.validador.valido()
+            validacao: this.validador.valido(),
+            open: true
         }
 
         this.state = this.stateInicial;
@@ -71,49 +77,58 @@ class Formulario extends Component {
         const { nome, livro, preco } = this.state;
 
         return (
-            <form>
-                <div className="row">
-                    <div className="input-field col s4">
-                        <label className="input-field" htmlFor="nome">Nome</label>
-                        <input
-                            className="validate"
-                            id="nome"
-                            type="text"
-                            name="nome"
-                            value={nome}
-                            onChange={this.escutadorDeInput}
-                        />
-                    </div>
+            <>
+                <Toast open={this.state.open} handleClose={() => this.setState({ open: false })}>
+                    Toast funcionando
+                </Toast>
+                <form>
+                    <Grid container spacing={2} alignItems="center">
+                        <Grid item>
+                            <TextField
+                                id="nome"
+                                label="Nome"
+                                variant="outlined"
+                                value={nome}
+                                name="nome"
+                                onChange={this.escutadorDeInput}
+                            />
+                        </Grid>
 
-                    <div className="input-field col s4">
-                        <label className="input-field" htmlFor="livro">Livro</label>
-                        <input
-                            className="validate"
-                            id="livro"
-                            type="text"
-                            name="livro"
-                            value={livro}
-                            onChange={this.escutadorDeInput}
-                        />
-                    </div>
+                        <Grid item>
+                            <TextField
+                                id="livro"
+                                label="Livro"
+                                variant="outlined"
+                                value={livro}
+                                name="livro"
+                                onChange={this.escutadorDeInput}
+                            />
+                        </Grid>
 
-                    <div className="input-field col s4">
-                        <label className="input-field" htmlFor="preco">Preço</label>
-                        <input
-                            className="validate"
-                            id="preco"
-                            type="text"
-                            name="preco"
-                            value={preco}
-                            onChange={this.escutadorDeInput}
-                        />
-                    </div>
-                </div>
+                        <Grid item>
+                            <TextField
+                                id="preco"
+                                label="Preço"
+                                variant="outlined"
+                                value={preco}
+                                name="preco"
+                                onChange={this.escutadorDeInput}
+                            />
+                        </Grid>
 
-
-                <button className="waves-effect wavez-light btn indigo lighten-2" onClick={this.submitFormulario} type="button">Salvar
-                </button>
-            </form>
+                        <Grid item>
+                            <Buttom
+                                variant="contained"
+                                onClick={this.submitFormulario}
+                                type="Button"
+                                color="primary"
+                            >
+                                Salvar
+                            </Buttom>
+                        </Grid>
+                    </Grid>
+                </form>
+            </>
         );
     }
 }
